@@ -1,0 +1,37 @@
+﻿@using WebApp.Models
+@model IEnumerable<Wexnet>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>WEXNET LIST</h2>
+<p>
+    @Html.ActionLink("Skapa nytt", "Create")
+</p>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Hestighet)</th>
+            <th>@Html.DisplayNameFor(model => model.RingNamn)</th>
+            <th>@Html.DisplayNameFor(model => model.IPAdressDistA)</th>
+            <th>@Html.DisplayNameFor(model => model.PortDistA)</th>
+            <th>@Html.DisplayNameFor(model => model.IPAdressDistB)</th>
+            <th>@Html.DisplayNameFor(model => model.PortDistB)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Hestighet)</td>
+                <td>@Html.DisplayFor(modelItem => item.RingNamn)</td>
+                <td>@Html.DisplayFor(modelItem => item.IPAdressDistA)</td>
+                <td>@Html.DisplayFor(modelItem => item.PortDistA)</td>
+                <td>@Html.DisplayFor(modelItem => item.IPAdressDistB)</td>
+                <td>@Html.DisplayFor(modelItem => item.PortDistB)</td>
+                <td>@Html.ActionLink("Ta bort","Delete", new { id = item.Id})</td>
+            </tr>
+        }
+    </tbody>
+</table>

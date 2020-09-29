@@ -1,0 +1,112 @@
+﻿@using WebApp.Models
+@model IEnumerable<Wexnet>
+
+@{
+    ViewBag.Title = "Create";
+    //<script src="http://ajax.googleapis.com7ajax/libs/jquary/3.5.1/jquary.min.js"></script>
+}
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    form {
+        padding: 1em;
+        background: #f9f9f9;
+        border: 1px solid #c1c1c1;
+        margin-top: 2rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1em;
+    }
+
+        form input {
+            margin-bottom: 1rem;
+            background: #fff;
+            border: 1px solid #9c9c9c;
+        }
+
+        form button {
+            background: lightgrey;
+            padding: 0.7em;
+            border: 0;
+        }
+
+    h2 {
+        text-align: left;
+    }
+</style>
+
+
+<h2>WEXNET</h2>
+<div class="row">
+
+    <div class="col-lg-6 col-lg-offset-3 text-left">
+        <section id="WEXNET">
+            
+                @using (Html.BeginForm("ShowData", "Wexnet", FormMethod.Post))
+                {
+                    var wexnet = new Wexnet();
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true);
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(Model => wexnet.Hestighet, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(Model => wexnet.Hestighet, new List<SelectListItem>
+                               {  new SelectListItem{Text = "1", Value= "1"},
+                                   new SelectListItem{Text = "10",Value = "10"}}, "Please Select")
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => wexnet.RingNamn, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(Model => wexnet.RingNamn)
+                            @Html.ValidationMessageFor(Model => wexnet.RingNamn)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => wexnet.IPAdressDistA, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(Model => wexnet.IPAdressDistA)
+                            @Html.ValidationMessageFor(Model => wexnet.IPAdressDistA)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(Model => wexnet.PortDistA, new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(Model => wexnet.PortDistA, Enumerable.Range(1, 36).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { placeholder = Html.DisplayNameFor(Model => wexnet.PortDistA), @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => wexnet.IPAdressDistB, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(Model => wexnet.IPAdressDistB)
+                            @Html.ValidationMessageFor(Model => wexnet.IPAdressDistB)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(Model => wexnet.PortDistB, new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(Model => wexnet.PortDistB, Enumerable.Range(1, 36).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { placeholder = Html.DisplayNameFor(Model => wexnet.PortDistB), @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Submit" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Tillbaka till listen", "Index")
+                    </p>
+
+                 }
+            
+        </section>
+    </div>
+</div>
+
